@@ -1,17 +1,19 @@
 import HomePage from "./HomePage";
 import AboutMe from "./AboutMe";
+import {Link, Route, Routes} from "react-router-dom";
 
 function NavApp() {
 
    return (
        <div>
-          <nav className="nav">
-             <a href="/" className="nav-item">Nav page</a>
-             <a href="/home" className="nav-item">homepage</a>
-             <a href="/aboutMe" className="nav-item">About Me</a>
+          <nav className='nav bg-dark'>
+             <Link to="/" className="nav-item text-white p-2">Home</Link>
+             <Link to="/about-me" className="nav-item text-white p-2">About Me</Link>
           </nav>
-          <HomePage/>
-          <AboutMe/>
+          <Routes>
+             <Route path="/" element={<HomePage/>}/>
+             <Route path="/about-me" element={<AboutMe/>}/>
+          </Routes>
        </div>
    );
 }
