@@ -14,7 +14,9 @@ function App() {
           <ThemeContext.Provider value={{isDark}}>
              <Page/>
           </ThemeContext.Provider>
-          <MealsProvider/>
+          <MealsProvider>
+             <MealsList/>
+          </MealsProvider>
        </div>
 
    );
