@@ -21,9 +21,10 @@ function Provider() {
  }
  export useContextValue = () => useContext(SomeContext)
 ``` 
-+ 사용은..
- > <Provider><children 객체 /></Provider>
-> 
++ 사용은..(주로 최상위 Component에서 정의)
+ ```
+<Provider><children 객체 /></Provider>
+```
 ## router 사용하기 : 최신 버젼 보다 이전게 사용하기 편함
 * 최신 버젼은 초기 페이지 지정 및 nav 고정이 좀 어려움(???)
 * npm install react-router-dom localforage match-sorter sort-by
