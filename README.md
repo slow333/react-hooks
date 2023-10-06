@@ -1,70 +1,49 @@
 # Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## useContext : 좀 햇갈림(사용 순서)
+### case 1.
++ Context 객체를 생성
+ > const SomeContext = createContext(null)
++ 생성한 context를 Provider를 통해 사용할 값을 생성
+ > const [value, setValue] = useState(defaultValue)  
+ > <SomeContext.Provider value={{value}} > <대상 react 객체/> </>
+ + 이렇게 하면 대상이 되는 react 객체에서 context 값을 사용 가능
+> const useContextValue = useContext(SomeContext)
+> 
+> useContextValue를 원하는 용도에 맞게 사용
+### case 2.
++ Context 객체를 생성하고 사용 할 수 있게 useContext 값을 전달...
+ ```
+const SomeContext = createContext(null)
+function Provider() {
+   const [value, setValue] = useState(defaultValue)
+   <SomeContext.Provider value={{value}} > {children} 
+   </SomeContext.Provider>
+ }
+ export useContextValue = () => useContext(SomeContext)
+``` 
++ 사용은..
+ > <Provider><children 객체 /></Provider>
+> 
+## router 사용하기 : 최신 버젼 보다 이전게 사용하기 편함
+* 최신 버젼은 초기 페이지 지정 및 nav 고정이 좀 어려움(???)
+* npm install react-router-dom localforage match-sorter sort-by
+* index.js
+```
+  <BrowserRouter>
+    <NavApp />
+    //<RouterProvider router={router} />
+  </BrowserRouter>
+```
+* navApp.js
+```
+<div>
+  <nav className='nav bg-dark'>
+    <Link to="/" className="nav-item text-white p-2">Home</Link>
+    <Link to="/about-me" className="nav-item text-white p-2">About Me</Link>
+  </nav>
+  <Routes>
+    <Route path="/" element={<HomePage/>}/>
+    <Route path="/about-me" element={<AboutMe/>}/>
+  </Routes>
+</div>
+```
