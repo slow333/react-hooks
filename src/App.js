@@ -1,10 +1,10 @@
 import './App.css';
 import {useState} from "react";
 
-import Page from "./components/Page";
-import {ThemeContext} from "./components/ThemeContext";
-import MealsList from "./components/MealsList";
-import MealsProvider from "./components/MealsProvider";
+import Page from "./useContextEx/Page";
+import {ThemeContext} from "./useContextEx/ThemeContext";
+import MealsList from "./useContextEx/MealsList";
+import MealsProvider from "./useContextEx/MealsProvider";
 
 function App() {
    const [isDark, setIsDark] = useState(["false", "see", "etc"])
@@ -18,7 +18,6 @@ function App() {
              <MealsList/>
           </MealsProvider>
        </div>
-
    );
 }
 
